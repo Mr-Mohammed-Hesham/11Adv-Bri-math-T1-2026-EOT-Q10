@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>📐 One-to-One Property of Exponential Functions - رياضيات 11 متقدم | Mr. Mohammed Hesham</title>
+<meta name="description" content="امتحان تفاعلي متكامل عن تطبيق خاصية واحد لواحد للدوال الأسية لحل المعادلات - رياضيات 11 متقدم">
+<meta name="author" content="Mr. Mohammed Hesham">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&family=Inter:wght@400;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Cairo', sans-serif; background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%); }
+body.en-mode { font-family: 'Inter', sans-serif; direction: ltr; }
+.arabic-math { font-family: 'Amiri', 'Cairo', serif; }
+.correct { background-color: #dcfce7 !important; border-color: #16a34a !important; }
+.incorrect { background-color: #fee2e2 !important; border-color: #dc2626 !important; }
+.timer-warning { color: #dc2626 !important; animation: pulse 1s infinite; }
+@keyframes pulse { 50% { opacity: 0.7; } }
+@media print { .no-print { display: none !important; } }
+.success-badge { display: inline-block; padding: 4px 12px; border-radius: 20px; font-weight: bold; font-size: 0.875rem; }
+.grade-excellent { background: #dcfce7; color: #166534; }
+.grade-good { background: #fef3c7; color: #92400e; }
+.grade-pass { background: #dbeafe; color: #1e40af; }
+.grade-fail { background: #fee2e2; color: #991b1b; }
+.lang-switch { position: fixed; top: 16px; left: 16px; z-index: 100; background: white; padding: 6px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: flex; gap: 4px; border: 2px solid #d97706; }
+body.en-mode .lang-switch { left: auto; right: 16px; }
+.lang-btn { padding: 6px 14px; border-radius: 20px; cursor: pointer; font-weight: bold; transition: all 0.3s; border: none; font-size: 0.875rem; background: transparent; color: #6b7280; }
+.lang-btn.active { background: #d97706; color: white; box-shadow: 0 2px 6px rgba(217,119,6,0.4); }
+.shuffle-badge { display: inline-block; background: linear-gradient(135deg, #d97706, #b45309); color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: bold; margin-right: 8px; }
+body.en-mode .shuffle-badge { margin-right: 0; margin-left: 8px; }
+.math-display { display: inline-block; direction: ltr; font-family: 'Amiri', serif; font-size: 1.1em; padding: 2px 6px; background: #fef3c7; border-radius: 4px; margin: 2px; color: #92400e; font-weight: 600; }
+.save-indicator { position: fixed; bottom: 20px; left: 20px; z-index: 200; background: #10b981; color: white; padding: 8px 16px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+body.en-mode .save-indicator { left: auto; right: 20px; }
+.save-indicator.show { opacity: 1; }
+.formula-box { background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 12px; margin: 10px 0; font-family: 'Amiri', serif; direction: ltr; text-align: center; }
+.svg-graph { display: block; margin: 12px auto; background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 8px; max-width: 100%; }
+.graph-container { text-align: center; margin: 10px 0; }
+.module-badge { display: inline-block; padding: 4px 16px; border-radius: 20px; font-weight: bold; font-size: 0.85rem; margin-bottom: 8px; }
+.module-1 { background: #fef3c7; color: #92400e; }
+.module-2 { background: #dbeafe; color: #1e40af; }
+.module-3 { background: #fce7f3; color: #9f1239; }
+.module-4 { background: #ecfdf5; color: #065f46; }
+.module-5 { background: #ede9fe; color: #5b21b6; }
+.module-6 { background: #fee2e2; color: #991b1b; }
+.question-card { background: white; border: 2px solid #e5e7eb; border-radius: 12px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); transition: all 0.3s; }
+.question-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.12); }
+.equation-box { background: #fef3c7; border: 2px solid #f59e0b; border-radius: 8px; padding: 12px; margin: 10px 0; text-align: center; font-size: 1.2em; }
+
+/* Hide solutions by default */
+.solution-box {
+    display: none;
+    background: #f0fdf4;
+    border: 2px solid #16a34a;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 15px;
+    animation: slideDown 0.3s ease-out;
+}
+
+/* Show solution when 'show' class is added */
+.solution-box.show {
+    display: block;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.check-btn {
+    background: #16a34a;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 5px;
+    transition: all 0.3s;
+}
+
+.check-btn:hover {
+    background: #15803d;
+    transform: translateY(-1px);
+}
+
+.show-answer-btn {
+    background: #d97706;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.show-answer-btn:hover {
+    background: #b45309;
+    transform: translateY(-1px);
+}
+</style>
+</head>
+<body class="p-4 md:p-8 min-h-screen">
+
+<div class="lang-switch no-print">
+<button class="lang-btn active" onclick="setLanguage('ar')" id="btn-ar">عربي</button>
+<button class="lang-btn" onclick="setLanguage('en')" id="btn-en">EN</button>
+</div>
+
+<div id="saveIndicator" class="save-indicator">💾 <span data-ar="تم الحفظ" data-en="Saved">تم الحفظ</span></div>
+
+<div id="timer-container" class="max-w-5xl mx-auto mb-4 text-center no-print">
+<div class="bg-white p-4 rounded-2xl shadow-lg inline-block border-2 border-amber-100">
+<span class="text-gray-600 ml-2">⏰ <span data-ar="الوقت المتبقي:" data-en="Time Left:">الوقت المتبقي:</span></span>
+<span id="timer" class="text-2xl font-bold text-amber-700 font-mono">90:00</span>
+<span class="shuffle-badge">📐 <span data-ar="خاصية واحد لواحد" data-en="One-to-One Property">خاصية واحد لواحد</span> - 30 <span data-ar="سؤال" data-en="Questions">سؤال</span></span>
+</div>
+</div>
+
+<div class="max-w-5xl mx-auto mb-6 flex flex-wrap gap-3 justify-center no-print">
+<button onclick="toggleAnswers()" class="bg-amber-700 hover:bg-amber-800 text-white px-5 py-2 rounded-xl font-medium transition shadow"> <span data-ar="إظهار/إخفاء كل الإجابات" data-en="Show/Hide All Answers">إظهار/إخفاء كل الإجابات</span></button>
+<button onclick="window.print()" class="bg-gray-700 hover:bg-gray-900 text-white px-5 py-2 rounded-xl font-medium transition shadow">🖨️ <span data-ar="طباعة" data-en="Print">طباعة</span></button>
+<button onclick="reshuffleExam()" class="bg-gradient-to-r from-amber-700 to-orange-600 hover:from-amber-800 hover:to-orange-700 text-white px-5 py-2 rounded-xl font-medium transition shadow">🔄 <span data-ar="أسئلة جديدة" data-en="New Questions">أسئلة جديدة</span></button>
+<button onclick="clearProgress()" class="bg-red-500 hover:bg-red-600 text-white px-5 py-2 rounded-xl font-medium transition shadow">️ <span data-ar="مسح التقدم" data-en="Clear Progress">مسح التقدم</span></button>
+</div>
+
+<header class="max-w-5xl mx-auto bg-white p-8 rounded-3xl shadow-2xl mb-8 border-4 border-amber-500">
+<div class="text-center">
+<div class="inline-block bg-amber-700 text-white px-6 py-2 rounded-full text-sm font-bold mb-4">MATH 11 ADVANCED - QUESTION 10</div>
+<h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4"> <span data-ar="تطبيق خاصية 'واحد لواحد' للدوال الأسية لحل المعادلات" data-en="Applying One-to-One Property of Exponential Functions">تطبيق خاصية "واحد لواحد" للدوال الأسية لحل المعادلات</span></h1>
+<h2 class="text-xl text-amber-700 font-semibold mb-2"><span data-ar="رياضيات 11 متقدم - تمارين 1-8 (صفحة 114)" data-en="Grade 11 Advanced - Exercises 1-8 (Page 114)">رياضيات 11 متقدم - تمارين 1-8 (صفحة 114)</span></h2>
+<p class="text-gray-600 mb-4"><span data-ar="One-to-One Property: If a^f(x) = a^g(x), then f(x) = g(x)" data-en="One-to-One Property: If a^f(x) = a^g(x), then f(x) = g(x)">One-to-One Property: If a^f(x) = a^g(x), then f(x) = g(x)</span></p>
+<p class="text-sm text-green-600 font-semibold">💾 <span data-ar="يتم حفظ تقدمك تلقائياً - 30 سؤالاً في 6 أقسام" data-en="Your progress is auto-saved - 30 questions in 6 sections">يتم حفظ تقدمك تلقائياً - 30 سؤالاً في 6 أقسام</span></p>
+</div>
+<div class="mt-6 flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+<span>📅 <span data-ar="التاريخ:" data-en="Date:">التاريخ:</span> <input type="text" id="examDate" class="border-b-2 border-amber-300 bg-transparent w-32 text-center"></span>
+<span>😊 <span data-ar="الاسم:" data-en="Name:">الاسم:</span> <input type="text" id="studentName" class="border-b-2 border-amber-300 bg-transparent w-40 text-center" data-placeholder-ar="اكتب اسمك" data-placeholder-en="Your name" placeholder="اكتب اسمك"></span>
+<span>🏫 <span data-ar="الشعبة:" data-en="Class:">الشعبة:</span> <input type="text" id="studentClass" class="border-b-2 border-amber-300 bg-transparent w-32 text-center" data-placeholder-ar="الشعبة" data-placeholder-en="Class" placeholder="الشعبة"></span>
+<span> <span data-ar="المدة: 90 دقيقة" data-en="Duration: 90 min">المدة: 90 دقيقة</span></span>
+<span>📊 <span data-ar="المجموع: 100 درجة" data-en="Total: 100 points">المجموع: 100 درجة</span></span>
+</div>
+</header>
+
+<div class="max-w-5xl mx-auto mb-6 bg-white p-4 rounded-xl shadow-lg border-2 border-amber-200 no-print">
+<h3 class="font-bold text-lg mb-3 text-amber-800 text-center">📐 <span data-ar="الخطوات الأساسية لحل المعادلات الأسية" data-en="Key Steps for Solving Exponential Equations">الخطوات الأساسية لحل المعادلات الأسية</span></h3>
+<div class="grid md:grid-cols-4 gap-3 text-sm">
+<div class="formula-box">
+<strong><span data-ar="الخطوة 1:" data-en="Step 1:">الخطوة 1:</span></strong><br>
+<span data-ar="اكتب كلا الطرفين بنفس الأساس" data-en="Write both sides with same base">اكتب كلا الطرفين بنفس الأساس</span>
+</div>
+<div class="formula-box">
+<strong><span data-ar="الخطوة 2:" data-en="Step 2:">الخطوة 2:</span></strong><br>
+<span data-ar="طبق خاصية واحد لواحد" data-en="Apply one-to-one property">طبق خاصية واحد لواحد</span><br>
+<span class="math-display">a^f(x) = a^g(x) ⟹ f(x) = g(x)</span>
+</div>
+<div class="formula-box">
+<strong><span data-ar="الخطوة 3:" data-en="Step 3:">الخطوة 3:</span></strong><br>
+<span data-ar="حل المعادلة الخطية" data-en="Solve the linear equation">حل المعادلة الخطية</span>
+</div>
+<div class="formula-box">
+<strong><span data-ar="الخطوة 4:" data-en="Step 4:">الخطوة 4:</span></strong><br>
+<span data-ar="تحقق من الحل" data-en="Verify the solution">تحقق من الحل</span>
+</div>
+</div>
+</div>
+
+<main class="max-w-5xl mx-auto space-y-8" id="exam-content"></main>
+
+<div class="text-center no-print pb-8 mt-8">
+<button onclick="gradeExam()" class="bg-gradient-to-r from-amber-700 to-orange-600 hover:from-amber-800 hover:to-orange-700 text-white text-lg px-12 py-4 rounded-2xl font-bold shadow-xl transition transform hover:scale-105">🎯 <span data-ar="صحح إجاباتي!" data-en="Grade My Exam!">صحح إجاباتي!</span></button>
+</div>
+
+<div id="results-panel" class="max-w-5xl mx-auto mt-8 bg-white p-8 rounded-3xl shadow-2xl border-4 border-amber-500 hidden no-print">
+<h2 class="text-3xl font-bold text-gray-900 mb-6 text-center">🏆 <span data-ar="نتيجتك يا بطل!" data-en="Your Result, Champion!">نتيجتك يا بطل!</span> 🏆</h2>
+<div class="grid md:grid-cols-3 gap-4 mb-6">
+<div class="bg-amber-50 p-4 rounded-xl text-center"><p>😊 <span data-ar="الاسم" data-en="Name">الاسم</span></p><p id="res-name" class="font-bold text-xl text-amber-700">-</p></div>
+<div class="bg-orange-50 p-4 rounded-xl text-center"><p> <span data-ar="التاريخ" data-en="Date">التاريخ</span></p><p id="res-date" class="font-bold text-xl text-orange-700">-</p></div>
+<div class="bg-amber-50 p-4 rounded-xl text-center"><p>🌟 <span data-ar="المجموع" data-en="Total">المجموع</span></p><p id="res-total" class="font-bold text-3xl text-amber-700">0 / 100</p></div>
+</div>
+<div class="text-center mb-6">
+<span id="success-badge" class="success-badge grade-excellent">-</span>
+<p id="success-percent" class="text-4xl font-bold text-amber-700 mt-2">0%</p>
+<p class="text-sm text-gray-500"><span data-ar="نسبة النجاح" data-en="Success Rate">نسبة النجاح</span></p>
+</div>
+<div class="bg-gray-50 p-6 rounded-xl mb-6">
+<h3 class="font-bold text-lg mb-4 text-gray-800">📊 <span data-ar="أداؤك في كل قسم:" data-en="Your Performance by Section:">أداؤك في كل قسم:</span></h3>
+<div class="space-y-3" id="sections-performance"></div>
+</div>
+<div class="text-center">
+<button id="sendEmailBtn" onclick="sendResultsToEmail()" class="bg-gradient-to-r from-amber-700 to-orange-600 text-white text-lg px-8 py-3 rounded-2xl font-bold shadow-xl transition">📧 <span data-ar="أرسل النتيجة للمعلم" data-en="Send Result to Teacher">أرسل النتيجة للمعلم</span></button>
+<p id="emailStatus" class="text-sm mt-2 text-center font-medium"></p>
+</div>
+</div>
+
+<footer class="max-w-5xl mx-auto mt-10 mb-8 text-center text-gray-500 text-sm no-print">
+© One-to-One Property - Grade 11 Advanced | Mr. Mohammed Hesham 
+</footer>
+
+<script>
+const PUBLIC_KEY = "Rb3Lq8tXaFmc5YHUH";
+const SERVICE_ID = "service_w15m64i";
+const TEMPLATE_ID = "template_5b0u2tq";
+const TARGET_EMAIL = "mohammedhesham872@gmail.com";
+emailjs.init(PUBLIC_KEY);
+
+const STORAGE_KEY = 'one_to_one_exponential_grade11_v2';
+const TOTAL_TIME = 5400;
+const TOTAL_QUESTIONS = 30;
+const TOTAL_SECTIONS = 6;
+const QUESTIONS_PER_SECTION = 5;
+
+let currentSeed = null;
+let answersVisible = false;
+let saveIndicatorTimeout = null;
+let currentLang = 'ar';
+let timeRemaining = TOTAL_TIME;
+let timerInterval;
+let examData;
+let correctAnswersMap = {};
+let rng = null;
+
+function mulberry32(a) {
+    return function() {
+        var t = a += 0x6D2B79F5;
+        t = Math.imul(t ^ t >>> 15, t | 1);
+        t ^= t + Math.imul(t ^ t >>> 7, t | 61);
+        return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    }
+}
+
+function showSaveIndicator() {
+    const indicator = document.getElementById('saveIndicator');
+    indicator.classList.add('show');
+    if (saveIndicatorTimeout) clearTimeout(saveIndicatorTimeout);
+    saveIndicatorTimeout = setTimeout(() => indicator.classList.remove('show'), 1500);
+}
+
+function saveState(showIndicator = true) {
+    try {
+        const state = {
+            seed: currentSeed, lang: currentLang,
+            studentName: document.getElementById('studentName').value,
+            studentClass: document.getElementById('studentClass').value,
+            examDate: document.getElementById('examDate').value,
+            answers: getSelectedAnswers(),
+            timeRemaining: timeRemaining,
+            answersVisible: answersVisible, savedAt: Date.now()
+        };
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        if (showIndicator) showSaveIndicator();
+    } catch (e) { console.error('Save error:', e); }
+}
+
+function loadState() {
+    try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        return saved ? JSON.parse(saved) : null;
+    } catch (e) { return null; }
+}
+
+function getSelectedAnswers() {
+    const answers = {};
+    for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+        const selected = document.querySelector('input[name="q'+i+'"]:checked');
+        if (selected) answers[i] = selected.value;
+    }
+    return answers;
+}
+
+function restoreAnswers(answers) {
+    if (!answers) return;
+    for (const [idx, val] of Object.entries(answers)) {
+        const radio = document.querySelector('input[name="q'+idx+'"][value="'+val+'"]');
+        if (radio) radio.checked = true;
+    }
+}
+
+function clearProgress() {
+    const msg = currentLang === 'ar' ? '⚠️ هل أنت متأكد من مسح كل التقدم؟' : '⚠️ Clear all progress?';
+    if (confirm(msg)) { localStorage.removeItem(STORAGE_KEY); location.reload(); }
+}
+
+function setupAnswerListeners() {
+    document.getElementById('exam-content').addEventListener('change', (e) => {
+        if (e.target.type === 'radio') saveState();
+    });
+}
+
+function setupInputListeners() {
+    ['studentName', 'studentClass', 'examDate'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+            el.addEventListener('input', () => saveState(false));
+            el.addEventListener('blur', () => saveState());
+        }
+    });
+}
+
+// ==================== SVG DIAGRAMS ====================
+const svgGraphs = {
+    one_to_one_property: `<svg class="svg-graph" width="450" height="280" viewBox="0 0 450 280" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="440" height="270" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="225" y="25" text-anchor="middle" font-size="14" fill="#92400e" font-weight="bold"> خاصية واحد لواحد - One-to-One Property</text>
+        <rect x="20" y="45" width="400" height="60" rx="6" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+        <text x="220" y="70" text-anchor="middle" font-size="13" fill="#92400e" font-family="'Amiri', serif" font-weight="bold">If a^f(x) = a^g(x), then f(x) = g(x)</text>
+        <text x="220" y="95" text-anchor="middle" font-size="11" fill="#92400e">(where a > 0 and a ≠ 1)</text>
+        <rect x="20" y="115" width="400" height="50" rx="6" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+        <text x="220" y="135" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">Example: 2^(x+1) = 2^(3x-5)</text>
+        <text x="220" y="155" text-anchor="middle" font-size="11" fill="#92400e">Since bases are equal (both 2): x+1 = 3x-5</text>
+        <rect x="20" y="175" width="400" height="50" rx="6" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+        <text x="220" y="195" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">Solving: x + 1 = 3x - 5 → 6 = 2x → x = 3</text>
+        <text x="220" y="215" text-anchor="middle" font-size="10" fill="#92400e">Check: 2^(3+1) = 2 = 16, 2^(3·3-5) = 2⁴ = 16 ✓</text>
+        <rect x="20" y="235" width="400" height="30" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="220" y="255" text-anchor="middle" font-size="10" fill="#92400e" font-weight="bold">Key: Both sides must have the SAME base before applying!</text>
+    </svg>`,
+    
+    exercise1_full: `<svg class="svg-graph" width="500" height="340" viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="490" height="330" rx="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2"/>
+        <text x="250" y="25" text-anchor="middle" font-size="14" fill="#1e40af" font-weight="bold">📝 تمرين 1: 4^(x+7) = 8^(x+3)</text>
+        <rect x="20" y="45" width="460" height="45" rx="6" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+        <text x="250" y="65" text-anchor="middle" font-size="11" fill="#1e40af" font-weight="bold">Step 1: Write with same base (base 2)</text>
+        <text x="250" y="82" text-anchor="middle" font-size="11" fill="#1e40af">4 = 2², 8 = 2³</text>
+        <rect x="20" y="100" width="460" height="45" rx="6" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+        <text x="250" y="120" text-anchor="middle" font-size="11" fill="#1e40af" font-weight="bold">Step 2: Apply power rule</text>
+        <text x="250" y="137" text-anchor="middle" font-size="11" fill="#1e40af">(2²)^(x+7) = (2³)^(x+3) → 2^(2x+14) = 2^(3x+9)</text>
+        <rect x="20" y="155" width="460" height="45" rx="6" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+        <text x="250" y="175" text-anchor="middle" font-size="11" fill="#1e40af" font-weight="bold">Step 3: One-to-one property</text>
+        <text x="250" y="192" text-anchor="middle" font-size="11" fill="#1e40af">2x + 14 = 3x + 9</text>
+        <rect x="20" y="210" width="460" height="45" rx="6" fill="#bfdbfe" stroke="#2563eb" stroke-width="2"/>
+        <text x="250" y="230" text-anchor="middle" font-size="11" fill="#1e40af" font-weight="bold">Step 4: Solve</text>
+        <text x="250" y="247" text-anchor="middle" font-size="11" fill="#1e40af">14 - 9 = 3x - 2x → x = 5</text>
+        <rect x="20" y="265" width="460" height="55" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="250" y="285" text-anchor="middle" font-size="12" fill="#92400e" font-weight="bold">Answer: x = 5</text>
+        <text x="250" y="305" text-anchor="middle" font-size="10" fill="#92400e">Check: 4^(5+7) = 4¹² = 2²⁴, 8^(5+3) = 8⁸ = 2²⁴ ✓</text>
+    </svg>`,
+    
+    exercise2_full: `<svg class="svg-graph" width="500" height="320" viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="490" height="310" rx="12" fill="#fce7f3" stroke="#ec4899" stroke-width="2"/>
+        <text x="250" y="25" text-anchor="middle" font-size="14" fill="#9f1239" font-weight="bold">📝 تمرين 2: 8^(x+4) = 32^(3x)</text>
+        <rect x="20" y="45" width="460" height="45" rx="6" fill="#fbcfe8" stroke="#ec4899" stroke-width="2"/>
+        <text x="250" y="65" text-anchor="middle" font-size="11" fill="#9f1239" font-weight="bold">Step 1: Same base (base 2)</text>
+        <text x="250" y="82" text-anchor="middle" font-size="11" fill="#9f1239">8 = 2³, 32 = 2⁵</text>
+        <rect x="20" y="100" width="460" height="45" rx="6" fill="#fbcfe8" stroke="#ec4899" stroke-width="2"/>
+        <text x="250" y="120" text-anchor="middle" font-size="11" fill="#9f1239" font-weight="bold">Step 2: Apply power rule</text>
+        <text x="250" y="137" text-anchor="middle" font-size="11" fill="#9f1239">(2³)^(x+4) = (2⁵)^(3x) → 2^(3x+12) = 2^(15x)</text>
+        <rect x="20" y="155" width="460" height="45" rx="6" fill="#fbcfe8" stroke="#ec4899" stroke-width="2"/>
+        <text x="250" y="175" text-anchor="middle" font-size="11" fill="#9f1239" font-weight="bold">Step 3: One-to-one</text>
+        <text x="250" y="192" text-anchor="middle" font-size="11" fill="#9f1239">3x + 12 = 15x</text>
+        <rect x="20" y="210" width="460" height="45" rx="6" fill="#fbcfe8" stroke="#ec4899" stroke-width="2"/>
+        <text x="250" y="230" text-anchor="middle" font-size="11" fill="#9f1239" font-weight="bold">Step 4: Solve</text>
+        <text x="250" y="247" text-anchor="middle" font-size="11" fill="#9f1239">12 = 12x → x = 1</text>
+        <rect x="20" y="265" width="460" height="40" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="250" y="285" text-anchor="middle" font-size="12" fill="#92400e" font-weight="bold">Answer: x = 1</text>
+        <text x="250" y="302" text-anchor="middle" font-size="10" fill="#92400e">Check: 8⁵ = 32768, 32³ = 32768 ✓</text>
+    </svg>`,
+    
+    exercise3_full: `<svg class="svg-graph" width="500" height="320" viewBox="0 0 500 320" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="490" height="310" rx="12" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+        <text x="250" y="25" text-anchor="middle" font-size="14" fill="#065f46" font-weight="bold">📝 تمرين 3: 49^(x+4) = 7^(18-x)</text>
+        <rect x="20" y="45" width="460" height="45" rx="6" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="250" y="65" text-anchor="middle" font-size="11" fill="#065f46" font-weight="bold">Step 1: Same base (base 7)</text>
+        <text x="250" y="82" text-anchor="middle" font-size="11" fill="#065f46">49 = 7²</text>
+        <rect x="20" y="100" width="460" height="45" rx="6" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="250" y="120" text-anchor="middle" font-size="11" fill="#065f46" font-weight="bold">Step 2: Apply power rule</text>
+        <text x="250" y="137" text-anchor="middle" font-size="11" fill="#065f46">(7²)^(x+4) = 7^(18-x) → 7^(2x+8) = 7^(18-x)</text>
+        <rect x="20" y="155" width="460" height="45" rx="6" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="250" y="175" text-anchor="middle" font-size="11" fill="#065f46" font-weight="bold">Step 3: One-to-one</text>
+        <text x="250" y="192" text-anchor="middle" font-size="11" fill="#065f46">2x + 8 = 18 - x</text>
+        <rect x="20" y="210" width="460" height="45" rx="6" fill="#d1fae5" stroke="#10b981" stroke-width="2"/>
+        <text x="250" y="230" text-anchor="middle" font-size="11" fill="#065f46" font-weight="bold">Step 4: Solve</text>
+        <text x="250" y="247" text-anchor="middle" font-size="11" fill="#065f46">3x = 10 → x = 10/3</text>
+        <rect x="20" y="265" width="460" height="40" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="250" y="285" text-anchor="middle" font-size="12" fill="#92400e" font-weight="bold">Answer: x = 10/3 ≈ 3.33</text>
+    </svg>`,
+    
+    exercise5_full: `<svg class="svg-graph" width="500" height="340" viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="490" height="330" rx="12" fill="#ede9fe" stroke="#7c3aed" stroke-width="2"/>
+        <text x="250" y="25" text-anchor="middle" font-size="14" fill="#5b21b6" font-weight="bold">📝 تمرين 5: (9/16)^(3x-2) = (3/4)^(5x+4)</text>
+        <rect x="20" y="45" width="460" height="45" rx="6" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+        <text x="250" y="65" text-anchor="middle" font-size="11" fill="#5b21b6" font-weight="bold">Step 1: Same base (base 3/4)</text>
+        <text x="250" y="82" text-anchor="middle" font-size="11" fill="#5b21b6">9/16 = (3/4)²</text>
+        <rect x="20" y="100" width="460" height="45" rx="6" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+        <text x="250" y="120" text-anchor="middle" font-size="11" fill="#5b21b6" font-weight="bold">Step 2: Apply power rule</text>
+        <text x="250" y="137" text-anchor="middle" font-size="11" fill="#5b21b6">((3/4)²)^(3x-2) = (3/4)^(5x+4) → (3/4)^(6x-4) = (3/4)^(5x+4)</text>
+        <rect x="20" y="155" width="460" height="45" rx="6" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+        <text x="250" y="175" text-anchor="middle" font-size="11" fill="#5b21b6" font-weight="bold">Step 3: One-to-one</text>
+        <text x="250" y="192" text-anchor="middle" font-size="11" fill="#5b21b6">6x - 4 = 5x + 4</text>
+        <rect x="20" y="210" width="460" height="45" rx="6" fill="#ddd6fe" stroke="#7c3aed" stroke-width="2"/>
+        <text x="250" y="230" text-anchor="middle" font-size="11" fill="#5b21b6" font-weight="bold">Step 4: Solve</text>
+        <text x="250" y="247" text-anchor="middle" font-size="11" fill="#5b21b6">x = 8</text>
+        <rect x="20" y="265" width="460" height="55" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="250" y="285" text-anchor="middle" font-size="12" fill="#92400e" font-weight="bold">Answer: x = 8</text>
+        <text x="250" y="305" text-anchor="middle" font-size="10" fill="#92400e">Check: (9/16)²² = (3/4)⁴⁴, (3/4)⁴⁴ = (3/4)⁴⁴ ✓</text>
+    </svg>`,
+    
+    exercise8_full: `<svg class="svg-graph" width="500" height="340" viewBox="0 0 500 340" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="490" height="330" rx="12" fill="#fee2e2" stroke="#dc2626" stroke-width="2"/>
+        <text x="250" y="25" text-anchor="middle" font-size="14" fill="#991b1b" font-weight="bold">📝 تمرين 8: (5/6)^(4x) = (36/25)^(9-x)</text>
+        <rect x="20" y="45" width="460" height="45" rx="6" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+        <text x="250" y="65" text-anchor="middle" font-size="11" fill="#991b1b" font-weight="bold">Step 1: Same base (base 5/6)</text>
+        <text x="250" y="82" text-anchor="middle" font-size="11" fill="#991b1b">36/25 = (6/5)² = (5/6)^(-2)</text>
+        <rect x="20" y="100" width="460" height="45" rx="6" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+        <text x="250" y="120" text-anchor="middle" font-size="11" fill="#991b1b" font-weight="bold">Step 2: Apply power rule</text>
+        <text x="250" y="137" text-anchor="middle" font-size="11" fill="#991b1b">(5/6)^(4x) = ((5/6)^(-2))^(9-x) = (5/6)^(-18+2x)</text>
+        <rect x="20" y="155" width="460" height="45" rx="6" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+        <text x="250" y="175" text-anchor="middle" font-size="11" fill="#991b1b" font-weight="bold">Step 3: One-to-one</text>
+        <text x="250" y="192" text-anchor="middle" font-size="11" fill="#991b1b">4x = -18 + 2x</text>
+        <rect x="20" y="210" width="460" height="45" rx="6" fill="#fecaca" stroke="#dc2626" stroke-width="2"/>
+        <text x="250" y="230" text-anchor="middle" font-size="11" fill="#991b1b" font-weight="bold">Step 4: Solve</text>
+        <text x="250" y="247" text-anchor="middle" font-size="11" fill="#991b1b">2x = -18 → x = -9</text>
+        <rect x="20" y="265" width="460" height="55" rx="6" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="250" y="285" text-anchor="middle" font-size="12" fill="#92400e" font-weight="bold">Answer: x = -9</text>
+        <text x="250" y="305" text-anchor="middle" font-size="10" fill="#92400e">Key: (a/b)^(-n) = (b/a)^n - flip the fraction!</text>
+    </svg>`,
+    
+    common_bases: `<svg class="svg-graph" width="450" height="300" viewBox="0 0 450 300" xmlns="http://www.w3.org/2000/svg">
+        <rect x="5" y="5" width="440" height="290" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+        <text x="225" y="25" text-anchor="middle" font-size="14" fill="#92400e" font-weight="bold"> الأسس الشائعة - Common Bases</text>
+        <rect x="20" y="45" width="190" height="230" rx="6" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+        <text x="115" y="65" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">Powers of 2:</text>
+        <text x="115" y="85" text-anchor="middle" font-size="10" fill="#92400e">2¹ = 2</text>
+        <text x="115" y="102" text-anchor="middle" font-size="10" fill="#92400e">2² = 4</text>
+        <text x="115" y="119" text-anchor="middle" font-size="10" fill="#92400e">2³ = 8</text>
+        <text x="115" y="136" text-anchor="middle" font-size="10" fill="#92400e">2⁴ = 16</text>
+        <text x="115" y="153" text-anchor="middle" font-size="10" fill="#92400e">2⁵ = 32</text>
+        <text x="115" y="170" text-anchor="middle" font-size="10" fill="#92400e">2⁶ = 64</text>
+        <text x="115" y="187" text-anchor="middle" font-size="10" fill="#92400e">2⁷ = 128</text>
+        <text x="115" y="204" text-anchor="middle" font-size="10" fill="#92400e">2⁸ = 256</text>
+        <text x="115" y="221" text-anchor="middle" font-size="10" fill="#92400e">2⁹ = 512</text>
+        <text x="115" y="238" text-anchor="middle" font-size="10" fill="#92400e">2¹⁰ = 1024</text>
+        <rect x="230" y="45" width="190" height="230" rx="6" fill="#fde68a" stroke="#f59e0b" stroke-width="2"/>
+        <text x="325" y="65" text-anchor="middle" font-size="11" fill="#92400e" font-weight="bold">Other Common:</text>
+        <text x="325" y="85" text-anchor="middle" font-size="10" fill="#92400e">3² = 9, 3³ = 27</text>
+        <text x="325" y="102" text-anchor="middle" font-size="10" fill="#92400e">4² = 16, 4³ = 64</text>
+        <text x="325" y="119" text-anchor="middle" font-size="10" fill="#92400e">5² = 25, 5³ = 125</text>
+        <text x="325" y="136" text-anchor="middle" font-size="10" fill="#92400e">6² = 36, 6³ = 216</text>
+        <text x="325" y="153" text-anchor="middle" font-size="10" fill="#92400e">7² = 49</text>
+        <text x="325" y="170" text-anchor="middle" font-size="10" fill="#92400e">9² = 81</text>
+        <text x="325" y="187" text-anchor="middle" font-size="10" fill="#92400e">10² = 100</text>
+        <text x="325" y="204" text-anchor="middle" font-size="10" fill="#92400e">11² = 121</text>
+        <text x="325" y="221" text-anchor="middle" font-size="10" fill="#92400e">12² = 144</text>
+        <text x="325" y="238" text-anchor="middle" font-size="10" fill="#92400e">16² = 256</text>
+        <text x="225" y="285" text-anchor="middle" font-size="10" fill="#92400e" font-weight="bold">Memorize these for quick base conversion!</text>
+    </svg>`
+};
+
+// ==================== EXAM DATA - 30 QUESTIONS (Each self-contained) ====================
+const originalExamData = {
+    sections: [
+        {
+            id: 'sec1',
+            title: { ar: '🔹 القسم 1: معادلات بالأساس 2 (Q1-Q5)', en: '🔹 Section 1: Base 2 Equations (Q1-Q5)' },
+            questions: [
+                {
+                    q: { ar: '<strong>السؤال 1:</strong> حل المعادلة الأسية التالية باستخدام خاصية واحد لواحد:<div class="equation-box"><span class="math-display">4^(x+7) = 8^(x+3)</span></div>ما الأساس المشترك الذي يجب استخدامه؟', en: '<strong>Question 1:</strong> Solve the following exponential equation using one-to-one property:<div class="equation-box"><span class="math-display">4^(x+7) = 8^(x+3)</span></div>What common base should be used?' },
+                    svg: svgGraphs.exercise1_full,
+                    options: [
+                        { ar: '<span class="math-display">2</span> (لأن 4=2² و 8=2³)', en: '<span class="math-display">2</span> (because 4=2² and 8=2³)' },
+                        { ar: '<span class="math-display">4</span>', en: '<span class="math-display">4</span>' },
+                        { ar: '<span class="math-display">8</span>', en: '<span class="math-display">8</span>' },
+                        { ar: '<span class="math-display">32</span>', en: '<span class="math-display">32</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '4 = 2² و 8 = 2³، إذن الأساس المشترك هو 2', en: '4 = 2² and 8 = 2³, so common base is 2' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 2:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">4^(x+7) = 8^(x+3)</span></div>بعد كتابة الطرفين بنفس الأساس (2)، ما المعادلة الناتجة عن تطبيق خاصية واحد لواحد؟', en: '<strong>Question 2:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">4^(x+7) = 8^(x+3)</span></div>After writing both sides with base 2, what equation results from applying one-to-one property?' },
+                    options: [
+                        { ar: '<span class="math-display">2x + 14 = 3x + 9</span>', en: '<span class="math-display">2x + 14 = 3x + 9</span>' },
+                        { ar: '<span class="math-display">x + 7 = x + 3</span>', en: '<span class="math-display">x + 7 = x + 3</span>' },
+                        { ar: '<span class="math-display">4x + 28 = 8x + 24</span>', en: '<span class="math-display">4x + 28 = 8x + 24</span>' },
+                        { ar: '<span class="math-display">2x + 7 = 3x + 3</span>', en: '<span class="math-display">2x + 7 = 3x + 3</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '(2²)^(x+7) = (2³)^(x+3) → 2^(2x+14) = 2^(3x+9) → 2x+14 = 3x+9', en: '(2²)^(x+7) = (2³)^(x+3) → 2^(2x+14) = 2^(3x+9) → 2x+14 = 3x+9' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 3:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">4^(x+7) = 8^(x+3)</span></div>ما قيمة x التي تحقق المعادلة؟', en: '<strong>Question 3:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">4^(x+7) = 8^(x+3)</span></div>What value of x satisfies the equation?' },
+                    options: [
+                        { ar: '<span class="math-display">x = 5</span>', en: '<span class="math-display">x = 5</span>' },
+                        { ar: '<span class="math-display">x = 3</span>', en: '<span class="math-display">x = 3</span>' },
+                        { ar: '<span class="math-display">x = 7</span>', en: '<span class="math-display">x = 7</span>' },
+                        { ar: '<span class="math-display">x = 2</span>', en: '<span class="math-display">x = 2</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '2x + 14 = 3x + 9 → 14 - 9 = 3x - 2x → x = 5', en: '2x + 14 = 3x + 9 → 14 - 9 = 3x - 2x → x = 5' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 4:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">8^(x+4) = 32^(3x)</span></div>ما الأساس المشترك؟', en: '<strong>Question 4:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">8^(x+4) = 32^(3x)</span></div>What is the common base?' },
+                    svg: svgGraphs.exercise2_full,
+                    options: [
+                        { ar: '<span class="math-display">2</span> (لأن 8=2³ و 32=2⁵)', en: '<span class="math-display">2</span> (because 8=2³ and 32=2⁵)' },
+                        { ar: '<span class="math-display">8</span>', en: '<span class="math-display">8</span>' },
+                        { ar: '<span class="math-display">32</span>', en: '<span class="math-display">32</span>' },
+                        { ar: '<span class="math-display">4</span>', en: '<span class="math-display">4</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '8 = 2³ و 32 = 2⁵، إذن الأساس المشترك هو 2', en: '8 = 2³ and 32 = 2⁵, so common base is 2' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 5:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">8^(x+4) = 32^(3x)</span></div>ما قيمة x؟', en: '<strong>Question 5:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">8^(x+4) = 32^(3x)</span></div>What is the value of x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = 1</span>', en: '<span class="math-display">x = 1</span>' },
+                        { ar: '<span class="math-display">x = 2</span>', en: '<span class="math-display">x = 2</span>' },
+                        { ar: '<span class="math-display">x = 4</span>', en: '<span class="math-display">x = 4</span>' },
+                        { ar: '<span class="math-display">x = 12</span>', en: '<span class="math-display">x = 12</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '(2³)^(x+4) = (2⁵)^(3x) → 2^(3x+12) = 2^(15x) → 3x+12 = 15x → 12 = 12x → x = 1', en: '(2³)^(x+4) = (2⁵)^(3x) → 2^(3x+12) = 2^(15x) → 3x+12 = 15x → x = 1' }
+                }
+            ]
+        },
+        {
+            id: 'sec2',
+            title: { ar: '🔹 القسم 2: معادلات بالأساس 7 و 5 (Q6-Q10)', en: '🔹 Section 2: Base 7 & 5 Equations (Q6-Q10)' },
+            questions: [
+                {
+                    q: { ar: '<strong>السؤال 6:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">49^(x+4) = 7^(18-x)</span></div>ما الأساس المشترك؟', en: '<strong>Question 6:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">49^(x+4) = 7^(18-x)</span></div>What is the common base?' },
+                    svg: svgGraphs.exercise3_full,
+                    options: [
+                        { ar: '<span class="math-display">7</span> (لأن 49=7²)', en: '<span class="math-display">7</span> (because 49=7²)' },
+                        { ar: '<span class="math-display">49</span>', en: '<span class="math-display">49</span>' },
+                        { ar: '<span class="math-display">2</span>', en: '<span class="math-display">2</span>' },
+                        { ar: '<span class="math-display">18</span>', en: '<span class="math-display">18</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '49 = 7²، إذن الأساس المشترك هو 7', en: '49 = 7², so common base is 7' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 7:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">49^(x+4) = 7^(18-x)</span></div>ما المعادلة بعد تطبيق خاصية واحد لواحد؟', en: '<strong>Question 7:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">49^(x+4) = 7^(18-x)</span></div>What is the equation after applying one-to-one property?' },
+                    options: [
+                        { ar: '<span class="math-display">2x + 8 = 18 - x</span>', en: '<span class="math-display">2x + 8 = 18 - x</span>' },
+                        { ar: '<span class="math-display">x + 4 = 18 - x</span>', en: '<span class="math-display">x + 4 = 18 - x</span>' },
+                        { ar: '<span class="math-display">49x + 196 = 7·18 - 7x</span>', en: '<span class="math-display">49x + 196 = 7·18 - 7x</span>' },
+                        { ar: '<span class="math-display">2(x+4) = 18-x</span>', en: '<span class="math-display">2(x+4) = 18-x</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '(7²)^(x+4) = 7^(18-x) → 7^(2x+8) = 7^(18-x) → 2x+8 = 18-x', en: '(7²)^(x+4) = 7^(18-x) → 7^(2x+8) = 7^(18-x) → 2x+8 = 18-x' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 8:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">49^(x+4) = 7^(18-x)</span></div>ما قيمة x؟', en: '<strong>Question 8:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">49^(x+4) = 7^(18-x)</span></div>What is the value of x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = 10/3</span>', en: '<span class="math-display">x = 10/3</span>' },
+                        { ar: '<span class="math-display">x = 3</span>', en: '<span class="math-display">x = 3</span>' },
+                        { ar: '<span class="math-display">x = 10</span>', en: '<span class="math-display">x = 10</span>' },
+                        { ar: '<span class="math-display">x = 26/3</span>', en: '<span class="math-display">x = 26/3</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '2x + 8 = 18 - x → 3x = 10 → x = 10/3', en: '2x + 8 = 18 - x → 3x = 10 → x = 10/3' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 9:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">32^(x-1) = 4^(x+5)</span></div>ما الأساس المشترك؟', en: '<strong>Question 9:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">32^(x-1) = 4^(x+5)</span></div>What is the common base?' },
+                    options: [
+                        { ar: '<span class="math-display">2</span> (لأن 32=2⁵ و 4=2²)', en: '<span class="math-display">2</span> (because 32=2 and 4=2²)' },
+                        { ar: '<span class="math-display">4</span>', en: '<span class="math-display">4</span>' },
+                        { ar: '<span class="math-display">32</span>', en: '<span class="math-display">32</span>' },
+                        { ar: '<span class="math-display">8</span>', en: '<span class="math-display">8</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '32 = 2⁵ و 4 = 2²، إذن الأساس المشترك هو 2', en: '32 = 2⁵ and 4 = 2², so common base is 2' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 10:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">32^(x-1) = 4^(x+5)</span></div>ما قيمة x؟', en: '<strong>Question 10:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">32^(x-1) = 4^(x+5)</span></div>What is the value of x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = 5</span>', en: '<span class="math-display">x = 5</span>' },
+                        { ar: '<span class="math-display">x = 3</span>', en: '<span class="math-display">x = 3</span>' },
+                        { ar: '<span class="math-display">x = 15</span>', en: '<span class="math-display">x = 15</span>' },
+                        { ar: '<span class="math-display">x = 1</span>', en: '<span class="math-display">x = 1</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '(2⁵)^(x-1) = (2²)^(x+5) → 5x-5 = 2x+10 → 3x = 15 → x = 5', en: '(2)^(x-1) = (2²)^(x+5) → 5x-5 = 2x+10 → 3x = 15 → x = 5' }
+                }
+            ]
+        },
+        {
+            id: 'sec3',
+            title: { ar: '🔹 القسم 3: معادلات بالكسور (Q11-Q15)', en: '🔹 Section 3: Fraction Base Equations (Q11-Q15)' },
+            questions: [
+                {
+                    q: { ar: '<strong>السؤال 11:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">25^(x/3) = 5^(x-4)</span></div>ما الأساس المشترك؟', en: '<strong>Question 11:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">25^(x/3) = 5^(x-4)</span></div>What is the common base?' },
+                    options: [
+                        { ar: '<span class="math-display">5</span> (لأن 25=5²)', en: '<span class="math-display">5</span> (because 25=5²)' },
+                        { ar: '<span class="math-display">25</span>', en: '<span class="math-display">25</span>' },
+                        { ar: '<span class="math-display">3</span>', en: '<span class="math-display">3</span>' },
+                        { ar: '<span class="math-display">x</span>', en: '<span class="math-display">x</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '25 = 5²، إذن الأساس المشترك هو 5', en: '25 = 5², so common base is 5' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 12:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">25^(x/3) = 5^(x-4)</span></div>ما المعادلة بعد تطبيق خاصية واحد لواحد؟', en: '<strong>Question 12:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">25^(x/3) = 5^(x-4)</span></div>What is the equation after applying one-to-one property?' },
+                    options: [
+                        { ar: '<span class="math-display">2x/3 = x - 4</span>', en: '<span class="math-display">2x/3 = x - 4</span>' },
+                        { ar: '<span class="math-display">x/3 = x - 4</span>', en: '<span class="math-display">x/3 = x - 4</span>' },
+                        { ar: '<span class="math-display">25x/3 = 5x - 20</span>', en: '<span class="math-display">25x/3 = 5x - 20</span>' },
+                        { ar: '<span class="math-display">x/3 = x - 4/5</span>', en: '<span class="math-display">x/3 = x - 4/5</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '(5²)^(x/3) = 5^(x-4) → 5^(2x/3) = 5^(x-4) → 2x/3 = x-4', en: '(5²)^(x/3) = 5^(x-4) → 5^(2x/3) = 5^(x-4) → 2x/3 = x-4' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 13:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">25^(x/3) = 5^(x-4)</span></div>ما قيمة x؟', en: '<strong>Question 13:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">25^(x/3) = 5^(x-4)</span></div>What is the value of x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = 12</span>', en: '<span class="math-display">x = 12</span>' },
+                        { ar: '<span class="math-display">x = 4</span>', en: '<span class="math-display">x = 4</span>' },
+                        { ar: '<span class="math-display">x = 6</span>', en: '<span class="math-display">x = 6</span>' },
+                        { ar: '<span class="math-display">x = 3</span>', en: '<span class="math-display">x = 3</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '2x/3 = x - 4 → 2x = 3x - 12 → x = 12', en: '2x/3 = x - 4 → 2x = 3x - 12 → x = 12' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 14:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">(9/16)^(3x-2) = (3/4)^(5x+4)</span></div>ما العلاقة بين 9/16 و 3/4؟', en: '<strong>Question 14:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">(9/16)^(3x-2) = (3/4)^(5x+4)</span></div>What is the relationship between 9/16 and 3/4?' },
+                    svg: svgGraphs.exercise5_full,
+                    options: [
+                        { ar: '<span class="math-display">9/16 = (3/4)²</span>', en: '<span class="math-display">9/16 = (3/4)²</span>' },
+                        { ar: '<span class="math-display">9/16 = (3/4)³</span>', en: '<span class="math-display">9/16 = (3/4)³</span>' },
+                        { ar: '<span class="math-display">9/16 = 3/4 + 1/4</span>', en: '<span class="math-display">9/16 = 3/4 + 1/4</span>' },
+                        { ar: 'لا علاقة', en: 'No relationship' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '9/16 = (3/4)² لأن 3² = 9 و 4² = 16', en: '9/16 = (3/4)² because 3² = 9 and 4² = 16' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 15:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">(9/16)^(3x-2) = (3/4)^(5x+4)</span></div>ما قيمة x؟', en: '<strong>Question 15:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">(9/16)^(3x-2) = (3/4)^(5x+4)</span></div>What is the value of x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = 8</span>', en: '<span class="math-display">x = 8</span>' },
+                        { ar: '<span class="math-display">x = 2</span>', en: '<span class="math-display">x = 2</span>' },
+                        { ar: '<span class="math-display">x = 6</span>', en: '<span class="math-display">x = 6</span>' },
+                        { ar: '<span class="math-display">x = 4</span>', en: '<span class="math-display">x = 4</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '((3/4)²)^(3x-2) = (3/4)^(5x+4) → (3/4)^(6x-4) = (3/4)^(5x+4) → 6x-4 = 5x+4 → x = 8', en: '6x-4 = 5x+4 → x = 8' }
+                }
+            ]
+        },
+        {
+            id: 'sec4',
+            title: { ar: '🔹 القسم 4: معادلات متقدمة (Q16-Q20)', en: '🔹 Section 4: Advanced Equations (Q16-Q20)' },
+            questions: [
+                {
+                    q: { ar: '<strong>السؤال 16:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">12^(3x+11) = 144^(2x+7)</span></div>ما العلاقة بين 12 و 144؟', en: '<strong>Question 16:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">12^(3x+11) = 144^(2x+7)</span></div>What is the relationship between 12 and 144?' },
+                    options: [
+                        { ar: '<span class="math-display">144 = 12²</span>', en: '<span class="math-display">144 = 12²</span>' },
+                        { ar: '<span class="math-display">144 = 12·12·12</span>', en: '<span class="math-display">144 = 12·12·12</span>' },
+                        { ar: '<span class="math-display">144 = 12 + 132</span>', en: '<span class="math-display">144 = 12 + 132</span>' },
+                        { ar: 'لا علاقة', en: 'No relationship' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '144 = 12²', en: '144 = 12²' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 17:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">12^(3x+11) = 144^(2x+7)</span></div>ما المعادلة بعد تطبيق خاصية واحد لواحد؟', en: '<strong>Question 17:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">12^(3x+11) = 144^(2x+7)</span></div>What is the equation after applying one-to-one property?' },
+                    options: [
+                        { ar: '<span class="math-display">3x + 11 = 4x + 14</span>', en: '<span class="math-display">3x + 11 = 4x + 14</span>' },
+                        { ar: '<span class="math-display">3x + 11 = 2x + 7</span>', en: '<span class="math-display">3x + 11 = 2x + 7</span>' },
+                        { ar: '<span class="math-display">12(3x+11) = 144(2x+7)</span>', en: '<span class="math-display">12(3x+11) = 144(2x+7)</span>' },
+                        { ar: '<span class="math-display">3x + 11 = 2(2x + 7)</span>', en: '<span class="math-display">3x + 11 = 2(2x + 7)</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '12^(3x+11) = (12²)^(2x+7) = 12^(4x+14) → 3x+11 = 4x+14', en: '12^(3x+11) = (12²)^(2x+7) = 12^(4x+14) → 3x+11 = 4x+14' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 18:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">12^(3x+11) = 144^(2x+7)</span></div>ما قيمة x؟', en: '<strong>Question 18:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">12^(3x+11) = 144^(2x+7)</span></div>What is the value of x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = -3</span>', en: '<span class="math-display">x = -3</span>' },
+                        { ar: '<span class="math-display">x = 3</span>', en: '<span class="math-display">x = 3</span>' },
+                        { ar: '<span class="math-display">x = 25</span>', en: '<span class="math-display">x = 25</span>' },
+                        { ar: '<span class="math-display">x = -25</span>', en: '<span class="math-display">x = -25</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '3x + 11 = 4x + 14 → 11 - 14 = 4x - 3x → x = -3', en: '3x + 11 = 4x + 14 → 11 - 14 = 4x - 3x → x = -3' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 19:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">(5/6)^(4x) = (36/25)^(9-x)</span></div>ما العلاقة بين 36/25 و 5/6؟', en: '<strong>Question 19:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">(5/6)^(4x) = (36/25)^(9-x)</span></div>What is the relationship between 36/25 and 5/6?' },
+                    svg: svgGraphs.exercise8_full,
+                    options: [
+                        { ar: '<span class="math-display">36/25 = (5/6)^(-2)</span>', en: '<span class="math-display">36/25 = (5/6)^(-2)</span>' },
+                        { ar: '<span class="math-display">36/25 = (5/6)²</span>', en: '<span class="math-display">36/25 = (5/6)²</span>' },
+                        { ar: '<span class="math-display">36/25 = (6/5)² فقط</span>', en: '<span class="math-display">36/25 = (6/5)² only</span>' },
+                        { ar: 'لا علاقة', en: 'No relationship' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '36/25 = (6/5)² = ((5/6)^(-1))² = (5/6)^(-2)', en: '36/25 = (6/5)² = ((5/6)^(-1))² = (5/6)^(-2)' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 20:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">(5/6)^(4x) = (36/25)^(9-x)</span></div>ما قيمة x؟', en: '<strong>Question 20:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">(5/6)^(4x) = (36/25)^(9-x)</span></div>What is the value of x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = -9</span>', en: '<span class="math-display">x = -9</span>' },
+                        { ar: '<span class="math-display">x = 9</span>', en: '<span class="math-display">x = 9</span>' },
+                        { ar: '<span class="math-display">x = -18</span>', en: '<span class="math-display">x = -18</span>' },
+                        { ar: '<span class="math-display">x = 18</span>', en: '<span class="math-display">x = 18</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '(5/6)^(4x) = ((5/6)^(-2))^(9-x) = (5/6)^(-18+2x) → 4x = -18+2x → 2x = -18 → x = -9', en: '(5/6)^(4x) = (5/6)^(-18+2x) → 4x = -18+2x → 2x = -18 → x = -9' }
+                }
+            ]
+        },
+        {
+            id: 'sec5',
+            title: { ar: '🔹 القسم 5: مسائل متنوعة (Q21-Q25)', en: '🔹 Section 5: Mixed Problems (Q21-Q25)' },
+            questions: [
+                {
+                    q: { ar: '<strong>السؤال 21:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">2^(3x) = 16^(x-1)</span></div>ما قيمة x؟', en: '<strong>Question 21:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">2^(3x) = 16^(x-1)</span></div>What is the value of x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = 4</span>', en: '<span class="math-display">x = 4</span>' },
+                        { ar: '<span class="math-display">x = 2</span>', en: '<span class="math-display">x = 2</span>' },
+                        { ar: '<span class="math-display">x = 1</span>', en: '<span class="math-display">x = 1</span>' },
+                        { ar: '<span class="math-display">x = 8</span>', en: '<span class="math-display">x = 8</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '16 = 2⁴، إذن 2^(3x) = (2⁴)^(x-1) = 2^(4x-4) → 3x = 4x-4 → x = 4', en: '16 = 2⁴, so 2^(3x) = 2^(4x-4) → 3x = 4x-4 → x = 4' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 22:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">3^(2x+1) = 27^(x-2)</span></div>ما قيمة x؟', en: '<strong>Question 22:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">3^(2x+1) = 27^(x-2)</span></div>What is the value of x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = 7</span>', en: '<span class="math-display">x = 7</span>' },
+                        { ar: '<span class="math-display">x = 5</span>', en: '<span class="math-display">x = 5</span>' },
+                        { ar: '<span class="math-display">x = 3</span>', en: '<span class="math-display">x = 3</span>' },
+                        { ar: '<span class="math-display">x = 1</span>', en: '<span class="math-display">x = 1</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '27 = 3³، إذن 3^(2x+1) = (3³)^(x-2) = 3^(3x-6) → 2x+1 = 3x-6 → x = 7', en: '27 = 3³, so 3^(2x+1) = 3^(3x-6) → 2x+1 = 3x-6 → x = 7' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 23:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">5^(x+3) = 125^(2x-1)</span></div>ما قيمة x؟', en: '<strong>Question 23:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">5^(x+3) = 125^(2x-1)</span></div>What is the value of x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = 6/5</span>', en: '<span class="math-display">x = 6/5</span>' },
+                        { ar: '<span class="math-display">x = 5/6</span>', en: '<span class="math-display">x = 5/6</span>' },
+                        { ar: '<span class="math-display">x = 2</span>', en: '<span class="math-display">x = 2</span>' },
+                        { ar: '<span class="math-display">x = 1</span>', en: '<span class="math-display">x = 1</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '125 = 5³، إذن 5^(x+3) = (5³)^(2x-1) = 5^(6x-3) → x+3 = 6x-3 → 6 = 5x → x = 6/5', en: '125 = 5³, so 5^(x+3) = 5^(6x-3) → x+3 = 6x-3 → x = 6/5' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 24:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">9^(2x-1) = 27^(x+3)</span></div>ما قيمة x؟', en: '<strong>Question 24:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">9^(2x-1) = 27^(x+3)</span></div>What is the value of x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = 11</span>', en: '<span class="math-display">x = 11</span>' },
+                        { ar: '<span class="math-display">x = 7</span>', en: '<span class="math-display">x = 7</span>' },
+                        { ar: '<span class="math-display">x = 5</span>', en: '<span class="math-display">x = 5</span>' },
+                        { ar: '<span class="math-display">x = 3</span>', en: '<span class="math-display">x = 3</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '9 = 3² و 27 = 3³، إذن (3²)^(2x-1) = (3³)^(x+3) → 3^(4x-2) = 3^(3x+9) → 4x-2 = 3x+9 → x = 11', en: '9 = 3² and 27 = 3³, so 3^(4x-2) = 3^(3x+9) → 4x-2 = 3x+9 → x = 11' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 25:</strong> حل المعادلة الأسية التالية:<div class="equation-box"><span class="math-display">16^(x+2) = 8^(3x-1)</span></div>ما قيمة x؟', en: '<strong>Question 25:</strong> Solve the exponential equation:<div class="equation-box"><span class="math-display">16^(x+2) = 8^(3x-1)</span></div>What is the value of x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = 11/5</span>', en: '<span class="math-display">x = 11/5</span>' },
+                        { ar: '<span class="math-display">x = 5/11</span>', en: '<span class="math-display">x = 5/11</span>' },
+                        { ar: '<span class="math-display">x = 2</span>', en: '<span class="math-display">x = 2</span>' },
+                        { ar: '<span class="math-display">x = 1</span>', en: '<span class="math-display">x = 1</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: '16 = 2⁴ و 8 = 2³، إذن (2)^(x+2) = (2³)^(3x-1) → 2^(4x+8) = 2^(9x-3) → 4x+8 = 9x-3 → 11 = 5x → x = 11/5', en: '16 = 2⁴ and 8 = 2³, so 2^(4x+8) = 2^(9x-3) → 4x+8 = 9x-3 → x = 11/5' }
+                }
+            ]
+        },
+        {
+            id: 'sec6',
+            title: { ar: '🔹 القسم 6: مفاهيم وتطبيقات (Q26-Q30)', en: '🔹 Section 6: Concepts & Applications (Q26-Q30)' },
+            questions: [
+                {
+                    q: { ar: '<strong>السؤال 26:</strong> ما هي خاصية واحد لواحد للدوال الأسية؟', en: '<strong>Question 26:</strong> What is the one-to-one property of exponential functions?' },
+                    svg: svgGraphs.one_to_one_property,
+                    options: [
+                        { ar: 'إذا a^f(x) = a^g(x) حيث a>0 و a≠1، فإن f(x) = g(x)', en: 'If a^f(x) = a^g(x) where a>0 and a≠1, then f(x) = g(x)' },
+                        { ar: 'إذا a^f(x) = b^g(x)، فإن f(x) = g(x)', en: 'If a^f(x) = b^g(x), then f(x) = g(x)' },
+                        { ar: 'إذا f(x) = g(x)، فإن a^f(x) = a^g(x) فقط', en: 'If f(x) = g(x), then a^f(x) = a^g(x) only' },
+                        { ar: 'لا توجد خاصية واحد لواحد للأسس', en: 'No one-to-one property for exponents' }
+                    ],
+                    correct: 0,
+                    answer: { ar: 'خاصية واحد لواحد: إذا a^f(x) = a^g(x) حيث a>0 و a≠1، فإن f(x) = g(x)', en: 'One-to-one property: If a^f(x) = a^g(x) where a>0 and a≠1, then f(x) = g(x)' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 27:</strong> لماذا يجب كتابة طرفي المعادلة الأسية بنفس الأساس قبل تطبيق خاصية واحد لواحد؟', en: '<strong>Question 27:</strong> Why must both sides of an exponential equation be written with the same base before applying one-to-one property?' },
+                    options: [
+                        { ar: 'لأن خاصية واحد لواحد تتطلب نفس الأساس: a^f(x) = a^g(x)', en: 'Because one-to-one property requires same base: a^f(x) = a^g(x)' },
+                        { ar: 'للتبسيط فقط', en: 'Just for simplification' },
+                        { ar: 'لأن اللوغاريتمات تتطلب ذلك', en: 'Because logarithms require it' },
+                        { ar: 'لا سبب خاص', en: 'No special reason' }
+                    ],
+                    correct: 0,
+                    answer: { ar: 'خاصية واحد لواحد تنص على: إذا a^f(x) = a^g(x) فإن f(x) = g(x). يجب أن يكون الأساس a نفسه في الطرفين', en: 'One-to-one property states: if a^f(x) = a^g(x) then f(x) = g(x). Base a must be same on both sides' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 28:</strong> في المعادلة 2^(x+1) = 2^(3x-5)، ما الخطوة التالية بعد تطبيق خاصية واحد لواحد؟', en: '<strong>Question 28:</strong> In equation 2^(x+1) = 2^(3x-5), what is the next step after applying one-to-one property?' },
+                    options: [
+                        { ar: 'مساواة الأسس: x + 1 = 3x - 5', en: 'Equate exponents: x + 1 = 3x - 5' },
+                        { ar: 'مساواة الأساسات: 2 = 2', en: 'Equate bases: 2 = 2' },
+                        { ar: 'أخذ اللوغاريتم للطرفين', en: 'Take logarithm of both sides' },
+                        { ar: 'الضرب في 2', en: 'Multiply by 2' }
+                    ],
+                    correct: 0,
+                    answer: { ar: 'بما أن الأساسات متساوية (2 = 2)، نساوي الأسس: x + 1 = 3x - 5', en: 'Since bases are equal (2 = 2), equate exponents: x + 1 = 3x - 5' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 29:</strong> حل المعادلة: x + 1 = 3x - 5 (الناتجة من تطبيق خاصية واحد لواحد على 2^(x+1) = 2^(3x-5)). ما قيمة x؟', en: '<strong>Question 29:</strong> Solve: x + 1 = 3x - 5 (resulting from applying one-to-one property to 2^(x+1) = 2^(3x-5)). What is x?' },
+                    options: [
+                        { ar: '<span class="math-display">x = 3</span>', en: '<span class="math-display">x = 3</span>' },
+                        { ar: '<span class="math-display">x = 2</span>', en: '<span class="math-display">x = 2</span>' },
+                        { ar: '<span class="math-display">x = 6</span>', en: '<span class="math-display">x = 6</span>' },
+                        { ar: '<span class="math-display">x = -3</span>', en: '<span class="math-display">x = -3</span>' }
+                    ],
+                    correct: 0,
+                    answer: { ar: 'x + 1 = 3x - 5 → 1 + 5 = 3x - x → 6 = 2x → x = 3', en: 'x + 1 = 3x - 5 → 1 + 5 = 3x - x → 6 = 2x → x = 3' }
+                },
+                {
+                    q: { ar: '<strong>السؤال 30:</strong> ما الخطوة الأولى دائماً عند حل معادلة أسية باستخدام خاصية واحد لواحد؟', en: '<strong>Question 30:</strong> What is always the first step when solving an exponential equation using one-to-one property?' },
+                    svg: svgGraphs.common_bases,
+                    options: [
+                        { ar: 'كتابة كلا الطرفين بنفس الأساس', en: 'Write both sides with same base' },
+                        { ar: 'أخذ اللوغاريتم للطرفين', en: 'Take logarithm of both sides' },
+                        { ar: 'التعويض بقيم عشوائية', en: 'Substitute random values' },
+                        { ar: 'الرسم البياني', en: 'Graphing' }
+                    ],
+                    correct: 0,
+                    answer: { ar: 'الخطوة الأولى هي كتابة كلا الطرفين بنفس الأساس لتطبيق خاصية واحد لواحد', en: 'First step is to write both sides with same base to apply one-to-one property' }
+                }
+            ]
+        }
+    ]
+};
+
+function shuffleArray(array) {
+    const arr = [...array];
+    for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(rng() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+    }
+    return arr;
+}
+
+function prepareShuffledExam() {
+    rng = mulberry32(currentSeed);
+    examData = JSON.parse(JSON.stringify(originalExamData));
+    correctAnswersMap = {};
+    let globalIdx = 0;
+    examData.sections.forEach((section) => {
+        section.questions = shuffleArray(section.questions);
+        section.questions.forEach((q) => {
+            const optionsWithCorrect = q.options.map((opt, idx) => ({ option: opt, isCorrect: idx === q.correct }));
+            const shuffledOptions = shuffleArray(optionsWithCorrect);
+            q.options = shuffledOptions.map(o => o.option);
+            q.correct = shuffledOptions.findIndex(o => o.isCorrect);
+            correctAnswersMap[globalIdx] = String.fromCharCode(97 + q.correct);
+            globalIdx++;
+        });
+    });
+}
+
+function reshuffleExam() {
+    const msg = currentLang === 'ar' ? '🔄 سيتم إنشاء أسئلة جديدة ومسح إجاباتك. هل أنت متأكد؟' : '🔄 New questions will be generated. Are you sure?';
+    if (confirm(msg)) {
+        currentSeed = Date.now(); timeRemaining = TOTAL_TIME; answersVisible = false;
+        prepareShuffledExam(); renderExam(); saveState();
+        alert(currentLang === 'ar' ? '🎲 تم تغيير الأسئلة! حظاً موفقاً! ' : '🎲 Questions changed! Good luck! 🍀');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+}
+
+function setLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.getElementById('btn-ar').classList.toggle('active', lang === 'ar');
+    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+    document.body.classList.toggle('en-mode', lang === 'en');
+    
+    document.querySelectorAll('[data-ar]').forEach(el => {
+        el.textContent = el.getAttribute('data-' + lang);
+    });
+    
+    document.querySelectorAll('[data-placeholder-ar]').forEach(el => {
+        el.placeholder = el.getAttribute('data-placeholder-' + lang);
+    });
+    
+    renderExam(); saveState(false);
+}
+
+function renderExam() {
+    const container = document.getElementById('exam-content');
+    const labels = { ar: { option: ['أ', 'ب', 'ج', 'د'], answer: '✅ الإجابة:' }, en: { option: ['A', 'B', 'C', 'D'], answer: '✅ Answer:' } };
+    const lbl = labels[currentLang];
+    let html = '';
+    let globalIdx = 0;
+    
+    examData.sections.forEach((section, secIdx) => {
+        const badgeClass = ['module-1', 'module-2', 'module-3', 'module-4', 'module-5', 'module-6'][secIdx];
+        html += '<section class="bg-white p-6 rounded-2xl shadow-lg border-2 border-amber-100">';
+        html += '<div class="text-center mb-4"><span class="module-badge ' + badgeClass + '">' + section.title[currentLang] + '</span></div>';
+        html += '<div class="space-y-4">';
+        
+        section.questions.forEach((q) => {
+            html += '<div class="question-card" id="q-' + globalIdx + '">';
+            html += '<strong class="text-amber-700 text-lg">' + (currentLang === 'ar' ? 'السؤال ' : 'Question ') + (globalIdx + 1) + '</strong><br>';
+            html += '<div class="mt-2">' + q.q[currentLang] + '</div>';
+            if (q.svg) html += '<div class="graph-container">' + q.svg + '</div>';
+            
+            html += '<div class="mt-4 space-y-2">';
+            q.options.forEach((opt, oIdx) => {
+                html += '<label class="cursor-pointer block hover:bg-amber-50 rounded-lg p-3 transition border border-gray-200">';
+                html += '<input type="radio" name="q' + globalIdx + '" value="' + String.fromCharCode(97 + oIdx) + '" class="mr-2 ml-2">';
+                html += '<span class="arabic-math">' + lbl.option[oIdx] + ') ' + opt[currentLang] + '</span>';
+                html += '</label>';
+            });
+            html += '</div>';
+            
+            html += '<div class="flex gap-2 mt-3">';
+            html += '<button onclick="checkAnswer(' + globalIdx + ')" class="check-btn">' + (currentLang === 'ar' ? '✓ تحقق' : '✓ Check') + '</button>';
+            html += '<button onclick="toggleSolution(' + globalIdx + ')" class="show-answer-btn">' + (currentLang === 'ar' ? '📖 أظهر الحل' : '📖 Show Solution') + '</button>';
+            html += '</div>';
+            
+            html += '<div id="solution-' + globalIdx + '" class="solution-box">';
+            html += '<strong class="text-green-700">' + lbl.answer + ' ' + lbl.option[q.correct] + ')</strong> ';
+            html += '<span class="arabic-math text-green-700">' + q.options[q.correct][currentLang] + '</span><br>';
+            html += '<span class="text-sm text-green-700 mt-2 block arabic-math">' + q.answer[currentLang] + '</span>';
+            html += '</div>';
+            html += '</div>';
+            globalIdx++;
+        });
+        
+        html += '</div></section>';
+    });
+    
+    container.innerHTML = html;
+}
+
+function startTimer() {
+    updateTimerDisplay();
+    timerInterval = setInterval(() => {
+        timeRemaining--;
+        updateTimerDisplay();
+        if (timeRemaining % 60 === 0) saveState(false);
+        if (timeRemaining <= 600) document.getElementById('timer').classList.add('timer-warning');
+        if (timeRemaining <= 0) {
+            clearInterval(timerInterval);
+            alert(currentLang === 'ar' ? "⏰ انتهى الوقت!" : "⏰ Time's up!");
+            gradeExam();
+        }
+    }, 1000);
+}
+
+function updateTimerDisplay() {
+    const m = Math.floor(timeRemaining / 60);
+    const s = timeRemaining % 60;
+    document.getElementById('timer').textContent = m.toString().padStart(2,'0') + ':' + s.toString().padStart(2,'0');
+}
+
+function toggleAnswers() {
+    answersVisible = !answersVisible;
+    document.querySelectorAll('.solution-box').forEach(el => {
+        if (answersVisible) {
+            el.classList.add('show');
+        } else {
+            el.classList.remove('show');
+        }
+    });
+    saveState(false);
+}
+
+function checkAnswer(qId) {
+    const q = examData.sections[Math.floor(qId / QUESTIONS_PER_SECTION)].questions[qId % QUESTIONS_PER_SECTION];
+    const sel = document.querySelector('input[name="q'+qId+'"]:checked');
+    
+    if (!sel) {
+        alert(currentLang === 'ar' ? '⚠️ الرجاء اختيار إجابة أولاً' : '⚠️ Please select an answer first');
+        return;
+    }
+    
+    const isCorrect = sel.value === correctAnswersMap[qId];
+    const card = document.getElementById('q-' + qId);
+    card.classList.remove('correct', 'incorrect');
+    card.classList.add(isCorrect ? 'correct' : 'incorrect');
+    
+    const solution = document.getElementById('solution-' + qId);
+    solution.classList.add('show');
+    
+    if (isCorrect) {
+        alert(currentLang === 'ar' ? '✅ إجابة صحيحة! أحسنت!' : '✅ Correct answer! Well done!');
+    } else {
+        alert(currentLang === 'ar' ? '❌ إجابة غير صحيحة. راجع الحل.' : '❌ Incorrect answer. Check the solution.');
+    }
+}
+
+function toggleSolution(qId) {
+    const solution = document.getElementById('solution-' + qId);
+    solution.classList.toggle('show');
+}
+
+function gradeExam() {
+    let correctCount = 0;
+    const sectionScores = new Array(TOTAL_SECTIONS).fill(0);
+    
+    for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+        const sel = document.querySelector('input[name="q'+i+'"]:checked');
+        const card = document.getElementById('q-' + i);
+        if (card) {
+            const isCorrect = sel && sel.value === correctAnswersMap[i];
+            if (isCorrect) {
+                correctCount++;
+                card.classList.add('correct');
+                card.classList.remove('incorrect');
+                sectionScores[Math.floor(i / QUESTIONS_PER_SECTION)]++;
+            } else {
+                card.classList.add('incorrect');
+                card.classList.remove('correct');
+            }
+        }
+    }
+    
+    const score = Math.round((correctCount / TOTAL_QUESTIONS) * 100);
+    document.getElementById('res-total').textContent = score + ' / 100';
+    document.getElementById('res-name').textContent = document.getElementById('studentName').value || (currentLang === 'ar' ? 'بطل' : 'Champion');
+    document.getElementById('res-date').textContent = new Date().toLocaleDateString(currentLang === 'ar' ? 'ar-AE' : 'en-US');
+    
+    const pc = document.getElementById('sections-performance');
+    pc.innerHTML = '';
+    examData.sections.forEach((s, idx) => {
+        pc.innerHTML += '<div class="flex justify-between items-center p-3 bg-white rounded-lg"><span class="text-gray-700">' + s.title[currentLang] + '</span><span class="font-bold text-amber-700">' + sectionScores[idx] + '/' + QUESTIONS_PER_SECTION + '</span></div>';
+    });
+    
+    const badge = document.getElementById('success-badge');
+    document.getElementById('success-percent').textContent = score + '%';
+    
+    if (currentLang === 'ar') {
+        if (score >= 90) { badge.textContent = '🌟 ممتاز جداً!'; badge.className = 'success-badge grade-excellent'; }
+        else if (score >= 75) { badge.textContent = '👏 ممتاز!'; badge.className = 'success-badge grade-good'; }
+        else if (score >= 50) { badge.textContent = '👍 جيد'; badge.className = 'success-badge grade-pass'; }
+        else { badge.textContent = '💪 حاول مرة أخرى'; badge.className = 'success-badge grade-fail'; }
+    } else {
+        if (score >= 90) { badge.textContent = ' Outstanding!'; badge.className = 'success-badge grade-excellent'; }
+        else if (score >= 75) { badge.textContent = '👏 Excellent!'; badge.className = 'success-badge grade-good'; }
+        else if (score >= 50) { badge.textContent = '👍 Good'; badge.className = 'success-badge grade-pass'; }
+        else { badge.textContent = '💪 Try Again'; badge.className = 'success-badge grade-fail'; }
+    }
+    
+    document.getElementById('results-panel').classList.remove('hidden');
+    document.getElementById('results-panel').scrollIntoView({ behavior: 'smooth' });
+    if (timerInterval) clearInterval(timerInterval);
+}
+
+function sendResultsToEmail() {
+    const btn = document.getElementById('sendEmailBtn');
+    const status = document.getElementById('emailStatus');
+    btn.disabled = true;
+    btn.textContent = currentLang === 'ar' ? '⏳ جاري الإرسال...' : '⏳ Sending...';
+    
+    const name = document.getElementById('studentName').value || 'N/A';
+    const studentClass = document.getElementById('studentClass').value || 'N/A';
+    const date = document.getElementById('examDate').value || new Date().toLocaleDateString();
+    const score = document.getElementById('res-total').textContent;
+    const successRate = document.getElementById('success-percent').textContent;
+    const badge = document.getElementById('success-badge').textContent;
+    
+    let questionsHTML = '<div style="font-family:Arial; direction:rtl;">';
+    questionsHTML += '<h2>📐 ' + (currentLang === 'ar' ? 'نتيجة امتحان خاصية واحد لواحد' : 'One-to-One Property Exam Result') + '</h2>';
+    questionsHTML += '<p><strong>' + (currentLang === 'ar' ? 'الاسم' : 'Name') + ':</strong> ' + name + '</p>';
+    questionsHTML += '<p><strong>' + (currentLang === 'ar' ? 'الشعبة' : 'Class') + ':</strong> ' + studentClass + '</p>';
+    questionsHTML += '<p><strong>' + (currentLang === 'ar' ? 'التاريخ' : 'Date') + ':</strong> ' + date + '</p>';
+    questionsHTML += '<p><strong>' + (currentLang === 'ar' ? 'الدرجة' : 'Score') + ':</strong> ' + score + ' (' + successRate + '%)</p>';
+    questionsHTML += '<p><strong>' + (currentLang === 'ar' ? 'التقدير' : 'Grade') + ':</strong> ' + badge + '</p>';
+    questionsHTML += '<hr><h3>' + (currentLang === 'ar' ? 'تفاصيل الإجابات:' : 'Answer Details:') + '</h3><table style="width:100%; border-collapse:collapse;">';
+    questionsHTML += '<tr style="background:#d97706; color:white;"><th style="padding:8px; border:1px solid #ddd;">#</th><th style="padding:8px; border:1px solid #ddd;">' + (currentLang === 'ar' ? 'السؤال' : 'Question') + '</th><th style="padding:8px; border:1px solid #ddd;">' + (currentLang === 'ar' ? 'إجابة الطالب' : 'Student Answer') + '</th><th style="padding:8px; border:1px solid #ddd;">' + (currentLang === 'ar' ? 'الصحيحة' : 'Correct') + '</th><th style="padding:8px; border:1px solid #ddd;">' + (currentLang === 'ar' ? 'النتيجة' : 'Result') + '</th></tr>';
+    
+    let globalIdx = 0;
+    examData.sections.forEach((section) => {
+        questionsHTML += '<tr style="background:#fef3c7;"><td colspan="5" style="padding:8px; font-weight:bold; border:1px solid #ddd;">' + section.title.ar + '</td></tr>';
+        section.questions.forEach((q) => {
+            const sel = document.querySelector('input[name="q'+globalIdx+'"]:checked');
+            const sv = sel ? sel.value : null;
+            const cv = correctAnswersMap[globalIdx];
+            const ic = sv === cv;
+            let sat = currentLang === 'ar' ? '❌ لم يجب' : '❌ No answer';
+            let sac = '#dc2626';
+            if (sv) {
+                const si = sv.charCodeAt(0) - 97;
+                sat = q.options[si][currentLang];
+                sac = ic ? '#16a34a' : '#dc2626';
+            }
+            const cat = q.options[q.correct][currentLang];
+            const rb = ic ? '#f0fdf4' : '#fef2f2';
+            questionsHTML += '<tr style="background:' + rb + ';"><td style="padding:8px; border:1px solid #ddd; text-align:center;">' + (globalIdx+1) + '</td><td style="padding:8px; border:1px solid #ddd;">' + q.q.ar.replace(/<[^>]+>/g, '').substring(0, 80) + '...</td><td style="padding:8px; border:1px solid #ddd; color:' + sac + ';">' + sat + '</td><td style="padding:8px; border:1px solid #ddd; color:#16a34a;">' + cat + '</td><td style="padding:8px; border:1px solid #ddd; text-align:center;">' + (ic?'✅':'❌') + '</td></tr>';
+            globalIdx++;
+        });
+    });
+    questionsHTML += '</table></div>';
+    
+    const templateParams = {
+        to_email: TARGET_EMAIL,
+        student_name: name,
+        student_class: studentClass,
+        exam_date: date,
+        total_score: score,
+        success_rate: successRate,
+        grade: badge,
+        answers_table: questionsHTML
+    };
+    
+    emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams)
+        .then(() => {
+            status.textContent = currentLang === 'ar' ? '✅ تم الإرسال بنجاح!' : '✅ Sent successfully!';
+            status.style.color = '#16a34a';
+            btn.textContent = currentLang === 'ar' ? '✓ تم' : '✓ Sent';
+            alert(currentLang === 'ar' ? 'تم إرسال النتيجة للمعلم بنجاح!' : 'Result sent to teacher successfully!');
+        })
+        .catch((error) => {
+            status.textContent = currentLang === 'ar' ? '❌ فشل الإرسال' : '❌ Failed to send';
+            status.style.color = '#dc2626';
+            btn.disabled = false;
+            btn.textContent = currentLang === 'ar' ? '📧 حاول مرة أخرى' : '📧 Try Again';
+            alert(currentLang === 'ar' ? 'فشل الإرسال: ' + error.text : 'Failed: ' + error.text);
+        });
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+    const saved = loadState();
+    if (saved && saved.seed) {
+        currentSeed = saved.seed;
+        currentLang = saved.lang || 'ar';
+        timeRemaining = saved.timeRemaining !== undefined ? saved.timeRemaining : TOTAL_TIME;
+        answersVisible = saved.answersVisible || false;
+    } else {
+        currentSeed = Date.now();
+    }
+    
+    document.getElementById('btn-ar').classList.toggle('active', currentLang === 'ar');
+    document.getElementById('btn-en').classList.toggle('active', currentLang === 'en');
+    document.body.classList.toggle('en-mode', currentLang === 'en');
+    document.documentElement.lang = currentLang;
+    document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+    
+    document.querySelectorAll('[data-ar]').forEach(el => {
+        el.textContent = el.getAttribute('data-' + currentLang);
+    });
+    
+    document.querySelectorAll('[data-placeholder-ar]').forEach(el => {
+        el.placeholder = el.getAttribute('data-placeholder-' + currentLang);
+    });
+    
+    prepareShuffledExam();
+    renderExam();
+    if (saved) {
+        if (saved.studentName) document.getElementById('studentName').value = saved.studentName;
+        if (saved.studentClass) document.getElementById('studentClass').value = saved.studentClass;
+        if (saved.examDate) document.getElementById('examDate').value = saved.examDate;
+        if (saved.answers) restoreAnswers(saved.answers);
+    }
+    setupAnswerListeners();
+    setupInputListeners();
+    startTimer();
+});
+window.addEventListener('beforeunload', () => saveState(false));
+</script>
+</body>
+</html>
